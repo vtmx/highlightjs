@@ -1,0 +1,47 @@
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font: normal 1rem/1.5 monospace;
+}
+
+main {
+  overflow: auto;
+  resize: horizontal;
+  margin: 2rem;
+  padding: 1rem 2rem;
+  width: 768px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: .25rem;
+
+  @media (width <= 768px) {
+    width: auto;
+    margin: 0;
+    padding: .5rem 1rem;
+    border: none;
+  }
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font: normal 1rem/1.5 monospace;
+  overflow-wrap: break-word;
+}
+
+ul {
+  list-style-type: square;
+  list-style-position: inside;
+  padding: 0;
+}
+
+p {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+code {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: .25rem;
+}

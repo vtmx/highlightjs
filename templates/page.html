@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+  <title>{{ config.title }}</title>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='theme-color' content='#13161a'>
+  <meta name='description' content='{{ config.description | safe }}'>
+  <meta name='author' content='{{ config.author }}'>
+  <link rel='stylesheet' media='screen' href='/main.css'>
+  <link rel='stylesheet' media='screen' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css'>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/tokyo-night-dark.min.css"> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js'></script>
+  <script>hljs.highlightAll();</script>
+</head>
+<body class='hljs'>
+  <main>
+    {{ page.content | safe }}
+  </main>
+
+  <script>
+    // Body
+    const bodyEl = document.querySelector('body.hljs');
+    const bodyElStyle = getComputedStyle(bodyEl);
+
+    // Main
+    const mainEl = document.querySelector('main');
+    const mainElStyle = getComputedStyle(mainEl);
+
+    // Recebe o arquivo css
+    const stylesheet = document.styleSheets[0];
+    // Insere a regra de seleção na primeira posição
+    stylesheet.insertRule(`::selection { background-color: ${bodyElStyle.color}; color: ${bodyElStyle.backgroundColor}; }`, 0);
+
+    // Main border color
+    mainEl.style.borderColor = `color-mix(in oklab, ${mainElStyle.color}, transparent 90%)`;
+
+    // Code background and border color
+    const codeEls = document.querySelectorAll('code');
+    codeEls.forEach(codeEl => {
+      const codeElStyle = getComputedStyle(codeEl);
+      codeEl.style.backgroundColor = `color-mix(in oklab, ${codeElStyle.backgroundColor}, black 5%)`;
+      codeEl.style.borderColor = `color-mix(in oklab, ${mainElStyle.color}, transparent 90%)`;
+    });
+  </script>
+</body>
+</html>
